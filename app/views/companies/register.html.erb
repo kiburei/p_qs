@@ -1,0 +1,19 @@
+<h1>Company Registration Details</h1>
+
+<%= form_tag('/companies') do  %>
+  <h2>Company Information</h2>
+    <%= text_field_tag :company_name, nil, :placeholder => 'Commpany/Business Name' %>
+    <%= select_tag :category, options_for_select(["a","b"]) %>
+    <%= text_field_tag :reg_no, nil, :placeholder => 'Registration Certificate Number' %>
+    <%= text_field_tag :kra_pin, nil, :placeholder => 'PIN Number' %>
+    <%= text_field_tag :ifmis_no, nil, :placeholder => 'IFMIS Number' %>
+    <%= text_field_tag :email, nil, :placeholder => 'Company Email' %>
+    <%= password_field_tag :password, nil, :placeholder => 'Enter Password' %>
+    <%= password_field_tag :password_confirmation, nil, :placeholder => 'Confirm Password' %>
+  <h2>User Information</h2>
+  <%= text_field_tag :first_name, nil, :placeholder => 'First Name' %>
+  <%= text_field_tag :last_name, nil, :placeholder => 'Last Name' %>
+  <%= text_field_tag :national_id, nil, :placeholder => 'National ID/Passport Number' %>
+  <%= text_field_tag :phone_no, nil, :placeholder => 'Phone Number' %>
+  <%= submit_tag "Add Company" %>
+<% end %>
