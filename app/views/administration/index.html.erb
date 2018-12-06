@@ -1,0 +1,25 @@
+<h2>Adminstration Dashboard</h2>
+
+<h3>Create Tender</h3>
+<%= form_tag('/administration') do %>
+  <%= text_field_tag :name, nil, :placeholder => 'Enter Tender Name' %>
+  <%= text_field_tag :ref_no, nil, :placeholder => 'Reference Number' %>
+  <%= date_field_tag :pub_date %>
+  <%= date_field_tag :deadline %>
+  <%= select_tag :business_category_id, options_for_select(['1','2','3','4']), class: 'browser-default' %>
+  <%= submit_tag "Create Tender" %>
+<% end %>
+
+<% @tenders.each do |tender| %>
+  <% if tender.deadline <= Date.today %>
+    <h3><%= link_to tender.name, open_path(tender) %></h3>
+  <% else %>
+    <h3><%= tender.name %></h3>
+  <% end %>
+  (<%= (tender.deadline - Date.today).to_i %> days to opening)
+  (<%= tender.tender_applications.count %> Applicants)
+  <p> <span class="small-title">Reference:</span> <%= tender.ref_no %> </p>
+  <p> <span class="small-title">Category: </span> <%= tender.business_category.name %> </p>
+  <p> <span class="small-title">Published on:</span> <%= tender.pub_date %> </p>
+  <p> <span class="small-title">Deadline on:</span> <%= tender.deadline %> </p>
+<% end %>

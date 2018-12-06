@@ -1,0 +1,31 @@
+<h1><%= @tender.name %> Application Form</h1>
+
+<%= form_tag(submit_path) do %>
+<%= hidden_field_tag :company_id, nil, :value => current_company.id %>
+<%= hidden_field_tag :tender_id, nil, :value => @tender.id %>
+  <div class="">
+    <label for="">Company Name</label>
+    <%= text_field_tag :company, nil, :value => current_company.company_name %>
+  </div>
+  <div class="">
+    <label for="">Company Address</label>
+    <%= text_field_tag :company, nil, :value => current_company.email %>
+  </div>
+  <div class="">
+    <label for="">Registration Certificate Number</label>
+    <%= text_field_tag :reg_no, nil, :value => current_company.reg_no %>
+  </div>
+  <div class="">
+    <label for="">Maximum value of business which you can handle at any one time – Kshs</label>
+    <%= number_field_tag :value %>
+  </div>
+  <div class="">
+    <label for="">Name of your bankers</label>
+    <%= text_field_tag :bank %>
+  </div>
+  <div class="">
+    <label for="">Branch</label>
+    <%= text_field_tag :branch %>
+  </div>
+  <%= submit_tag 'Apply' %>
+<% end %>

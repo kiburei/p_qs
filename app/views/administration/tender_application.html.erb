@@ -1,0 +1,20 @@
+<h2>Tender No. <%= @tender_application.id %> for applicant <%= @tender_application.company.company_name %> has been unsealed</h2>
+<p>This action can not be undone</p>
+
+<p><span class="title">Company/Business Name:</span> <%= @tender_application.company.company_name %></p>
+<p><span class="title">Tender Value:</span> <%= number_to_currency(@tender_application.value, unit: 'KES ') %></p>
+
+<div class="award">
+  <% if @tender_application.tender.awarded == true %>
+    <h6>Comments</h6>
+    <p><%= @tender_application.comments %></p>
+    <button class="btn grey lighten-2" disabled>Tender has been awarded</button>
+  <% else %>
+  <h6>Comments</h6>
+    <%= form_tag(comments_path(@tender_application.tender, @tender_application)) do %>
+      <%= text_area_tag :comments, nil, :placeholder => 'Write comments here', :required => true %>
+      <%= submit_tag 'submit' %>
+    <% end %>
+    <%= link_to 'Award Tender', award_path(@tender_application.tender, @tender_application), class: 'btn green lighten-2' %>
+  <% end %>
+</div>

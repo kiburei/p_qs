@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_091823) do
+ActiveRecord::Schema.define(version: 2018_12_06_170157) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
 
   create_table "business_categories", force: :cascade do |t|
     t.string "name"
@@ -40,6 +52,21 @@ ActiveRecord::Schema.define(version: 2018_12_06_091823) do
     t.index ["reset_password_token"], name: "index_companies_on_reset_password_token", unique: true
   end
 
+  create_table "tender_applications", force: :cascade do |t|
+    t.decimal "value", precision: 8, scale: 2
+    t.string "bank"
+    t.string "branch"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "company_id"
+    t.integer "tender_id"
+    t.boolean "status", default: false
+    t.boolean "winner", default: false
+    t.text "comments"
+    t.index ["company_id"], name: "index_tender_applications_on_company_id"
+    t.index ["tender_id"], name: "index_tender_applications_on_tender_id"
+  end
+
   create_table "tenders", force: :cascade do |t|
     t.string "name"
     t.string "ref_no"
@@ -48,6 +75,7 @@ ActiveRecord::Schema.define(version: 2018_12_06_091823) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "business_category_id"
+    t.boolean "awarded", default: false
     t.index ["business_category_id"], name: "index_tenders_on_business_category_id"
   end
 

@@ -1,0 +1,35 @@
+<% if @tender.awarded == true %>
+  <h1>Tender has been Awarded to <span class="winner"><%= Company.find(@winner.ids[0]).company_name %></span> </h1>
+<% else %>
+  <h1>Tender Opening</h1>
+<% end %>
+<h2><%= @tender.name %></h2>
+<p> <span class="title">No. of Applicants</span> <%= @tender.tender_applications.count %></p>
+
+<h3>List of Applicants</h3>
+<table>
+  <thead>
+    <th>Company/Business</th>
+    <th>Application ID</th>
+    <th>Tender Value</th>
+    <th>Status</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @tender.tender_applications.each do |application| %>
+      <tr>
+        <td><%= application.company.company_name %></td>
+        <td><%= application.id %></td>
+        <td><%= number_to_currency(application.value, unit: 'KES ') %></td>
+        <td>
+          <% if application.status == true %>
+              <span class="unsealed">Unsealed</span>
+          <% else %>
+            <span class="sealed">Sealed</span>
+          <% end %>
+        </td>
+        <td><%= link_to 'Open', unseal_path(@tender, application), class: 'btn blue lighten-2' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

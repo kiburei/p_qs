@@ -1,9 +1,10 @@
 <h1>Available Tenders</h1>
-
-<% @tenders.all do |tender| %>
+<% @tenders.each do |tender| %>
   <h3><%= tender.name %></h3>
   <p> <span class="small-title">Reference:</span> <%= tender.ref_no %> </p>
-  <p> <span class="small-title">Category: </span> <%= tender.category.name %> </p>
+  <p> <span class="small-title">Category: </span> <%= tender.business_category.name %> </p>
   <p> <span class="small-title">Published on:</span> <%= tender.pub_date %> </p>
   <p> <span class="small-title">Deadline on:</span> <%= tender.deadline %> </p>
+  <%= link_to 'Download Documentation', root_url, class: 'btn blue lighten-2' %>
+  <%= link_to 'Tender Application', application_path(tender), class: 'btn green lighten-2' %>
 <% end %>
