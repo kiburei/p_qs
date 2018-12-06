@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
-  root 'companies#register'
-  resources :companies
+  root 'company#register'
+  resources :company do
+    get '/verification' => 'company#verify', as: :verify
+  end
+  get '/tenders' => 'company#tenders', as: :tenders
 
   devise_for :companies, :controllers => { registrations: 'registrations' }
 

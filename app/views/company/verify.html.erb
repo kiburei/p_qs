@@ -1,0 +1,28 @@
+<h1>Company Verification for <span class="title"><%= current_company.company_name %></span> </h1>
+<div class="card verify">
+  <h3>Registrar of Companies</h3>
+  <p><span class="title">Registration Number:</span> Your registration number <%= current_company.reg_no %> has been verified</p>
+  <p> <span class="title">Annual Returns</span> Your returns are up to date </p>
+  <span class="">
+    <p>Already Complied?</p>
+    <button class="btn blue lighten-2">retry verification</button>
+  </span>
+</div>
+<div class="card verify">
+  <h3>KRA</h3>
+  <p><span class="title">PIN Status:</span> Your PIN number <%= current_company.kra_pin %> has been succefully verified</p>
+  <p> <span class="title">Tax Compliance</span> Your have not filed your tax for the year 2017/2018</p>
+  <span class="">
+    <p>Already Complied?</p>
+    <button class="btn blue lighten-2">retry verification</button>
+  </span>
+</div>
+<div class="card verify">
+  <h3>Other Verification</h3>
+  <p><span class="title">YAGPO Status:</span> Your YAGPO Certificate has expired</p>
+  <p> <span class="title">IFMIS Returns</span> Your do not hav an IFMIS number</p>
+  <span class="">
+    <p>Already Complied?</p>
+    <button class="btn blue lighten-2">retry verification</button>
+  </span>
+</div>

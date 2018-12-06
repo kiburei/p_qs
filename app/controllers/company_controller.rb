@@ -1,7 +1,8 @@
-class CompaniesController < ApplicationController
+class CompanyController < ApplicationController
+  before_action :authenticate_company!, only: [:verify]
 
   def register
-
+    @categories = BusinessCategory.all
   end
 
   def create
@@ -9,6 +10,14 @@ class CompaniesController < ApplicationController
     if @company.save!
       redirect_to root_url, notice: "Company details added"
     end
+  end
+
+  def verify
+
+  end
+
+  def tenders
+    @tenders = Tender.all
   end
 
   def company_params

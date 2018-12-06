@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_05_172603) do
+ActiveRecord::Schema.define(version: 2018_12_06_091823) do
+
+  create_table "business_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,6 +38,17 @@ ActiveRecord::Schema.define(version: 2018_12_05_172603) do
     t.string "phone_no"
     t.index ["email"], name: "index_companies_on_email", unique: true
     t.index ["reset_password_token"], name: "index_companies_on_reset_password_token", unique: true
+  end
+
+  create_table "tenders", force: :cascade do |t|
+    t.string "name"
+    t.string "ref_no"
+    t.date "pub_date"
+    t.date "deadline"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "business_category_id"
+    t.index ["business_category_id"], name: "index_tenders_on_business_category_id"
   end
 
 end

@@ -1,9 +1,9 @@
 <h1>Company Registration Details</h1>
 
-<%= form_tag('/companies') do  %>
+<%= form_tag('/company') do  %>
   <h2>Company Information</h2>
     <%= text_field_tag :company_name, nil, :placeholder => 'Commpany/Business Name' %>
-    <%= select_tag :category, options_for_select(["a","b"]) %>
+    <%= select_tag :category, options_for_select(@categories), class: 'browser-default' %>
     <%= text_field_tag :reg_no, nil, :placeholder => 'Registration Certificate Number' %>
     <%= text_field_tag :kra_pin, nil, :placeholder => 'PIN Number' %>
     <%= text_field_tag :ifmis_no, nil, :placeholder => 'IFMIS Number' %>
