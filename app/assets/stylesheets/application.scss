@@ -17,3 +17,41 @@
  $primary-color: color("blue", "lighten-2") !default;
  $secondary-color: color("yellow", "base") !default;
  @import 'materialize';
+
+.nav-wrapper {
+  padding-left: 200px;
+  padding-right: 200px;
+}
+.main {
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.verify {
+  margin: 10px;
+  padding: 20px;
+}
+
+.flex {
+  display: flex;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.small-title {
+  color: grey;
+}
+
+.warning {
+  background-color: yellow;
+}
+
+.good {
+  background-color: green;
+}
+
+.bad {
+  background-color: red;
+}

@@ -27,5 +27,9 @@
     <label for="">Branch</label>
     <%= text_field_tag :branch %>
   </div>
-  <%= submit_tag 'Apply' %>
+  <div class="">
+    <label for="">Attach the following documents: Bank statement, Company Profile</label>
+    <%= file_field_tag :files, :multiple => true %>
+  </div>
+  <%= submit_tag 'Apply', class: 'btn blue lighten-2' %>
 <% end %>

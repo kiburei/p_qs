@@ -9,21 +9,25 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <nav>
-   <div class="nav-wrapper">
-     <a href="/" class="brand-logo">PQS Tenders</a>
-     <ul id="nav-mobile" class="right hide-on-med-and-down">
-       <li>
-         <% if company_signed_in? %>
-          <%= link_to current_company.company_name, root_url %>
-         <% end %>
-       </li>
-       <li> <%= link_to 'Verify Company', company_verify_path(1) %> </li>
-       <li> <%= link_to 'Apply Tender', tenders_path %> </li>
-       <li> <%= link_to 'Admin', administration_index_path %> </li>
-     </ul>
-   </div>
- </nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">PQS Tenders</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <% if company_signed_in? %>
+          <li><%= link_to current_company.company_name, company_path(current_company) %></li>
+          <li><%= link_to 'logout', destroy_company_session_path, method: 'delete' %></li>
+        <% end %>
+        <li> <%= link_to 'Verify Company', company_verify_path(1) %> </li>
+        <li> <%= link_to 'Apply Tender', tenders_path %> </li>
+        <li> <%= link_to 'Admin', administration_index_path %> </li>
+        <% if admin_signed_in? %>
+          <li><%= link_to 'Logout', destroy_admin_session_path, method: 'delete' %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
   <body>
-    <%= yield %>
+    <div class="main">
+      <%= yield %>
+    </div>
   </body>
 </html>

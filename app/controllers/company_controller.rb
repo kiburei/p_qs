@@ -6,6 +6,11 @@ class CompanyController < ApplicationController
     @categories = BusinessCategory.all
   end
 
+  def show
+    @awarded = current_company.tender_applications.where(winner: true)
+    @applied = current_company.tender_applications
+  end
+
   def create
     @company = Company.create(company_params)
     if @company.save!

@@ -1,0 +1,47 @@
+<h1>Company Portal</h1>
+<h2><%= current_company.company_name %></h2>
+
+<div class="row">
+  <div class="col s6">
+    <h3>Tenders Awarded</h3>
+    <table>
+      <thead>
+        <th>Tender Name</th>
+        <th>Tender Number</th>
+        <th>Category</th>
+        <th>Tender Value</th>
+      </thead>
+      <tbody>
+        <% @awarded.each do |tender| %>
+          <tr>
+            <td><%= tender.tender.name %></td>
+            <td><%= tender.tender.ref_no %></td>
+            <td><%= tender.tender.business_category.name %></td>
+            <td><%= tender.value %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col s6">
+    <h3>Applied Tenders</h3>
+    <table>
+      <thead>
+        <th>Tender Name</th>
+        <th>Tender Number</th>
+        <th>Category</th>
+        <th>Tender Value</th>
+      </thead>
+      <tbody>
+        <% @applied.each do |tender| %>
+          <tr>
+            <td><%= tender.tender.name %></td>
+            <td><%= tender.tender.ref_no %></td>
+            <td><%= tender.tender.business_category.name %></td>
+            <td><%= tender.value %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

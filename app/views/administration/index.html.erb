@@ -4,15 +4,29 @@
 <%= form_tag('/administration') do %>
   <%= text_field_tag :name, nil, :placeholder => 'Enter Tender Name' %>
   <%= text_field_tag :ref_no, nil, :placeholder => 'Reference Number' %>
-  <%= date_field_tag :pub_date %>
-  <%= date_field_tag :deadline %>
-  <%= select_tag :business_category_id, options_for_select(['1','2','3','4']), class: 'browser-default' %>
-  <%= submit_tag "Create Tender" %>
+  <div class="row">
+    <div class="col s6">
+      <%= date_field_tag :pub_date %>
+    </div>
+    <div class="col s6">
+      <%= date_field_tag :deadline %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s6">
+      <%= select_tag :business_category_id, options_for_select(@categories.collect { |u| [u.name, u.id] }), class: 'browser-default' %>
+    </div>
+    <div class="col s6">
+      <label for="">Attach Tender Documents</label>
+      <%= file_field_tag :files, :multiple => true %>
+    </div>
+  </div>
+  <p><%= submit_tag "Create Tender", class: 'btn blue lighten-2' %></p>
 <% end %>
 
 <% @tenders.each do |tender| %>
   <% if tender.deadline <= Date.today %>
-    <h3><%= link_to tender.name, open_path(tender) %></h3>
+    <h3><%= link_to tender.name, open_path(tender) %> <label for="">closed</label> </h3>
   <% else %>
     <h3><%= tender.name %></h3>
   <% end %>
